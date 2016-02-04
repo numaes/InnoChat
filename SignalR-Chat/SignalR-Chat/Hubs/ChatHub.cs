@@ -10,12 +10,6 @@ namespace SignalR_Chat.Hubs
     public class ChatHub : Hub
     {
         public static List<Client> ConnectedUsers { get; set; } = new List<Client>();
-        public void Send(string message)
-        {
-            var sender = ConnectedUsers.First(u => u.ID.Equals(Context.ConnectionId));
-            Clients.All.broadcastMessage(sender.Username, message);
-        }
-
         public void Connect(string username)
         {
             Client c = new Client()
@@ -27,6 +21,14 @@ namespace SignalR_Chat.Hubs
             Clients.All.updateUsers(ConnectedUsers.Count(), ConnectedUsers.Select(u => u.Username));
         }
 
+
+        public void Send(string message)
+        {
+            var sender = ConnectedUsers.First(u => u.ID.Equals(Context.ConnectionId));
+            Clients.All.broadcastMessage(sender.Username, message);
+        }
+
+
         public override Task OnDisconnected(bool stopCalled)
         {
             var disconnectedUser = ConnectedUsers.FirstOrDefault(c => c.ID.Equals(Context.ConnectionId));
@@ -35,6 +37,7 @@ namespace SignalR_Chat.Hubs
             return base.OnDisconnected(stopCalled);
         }
     }
+
 
     public class Client
     {
