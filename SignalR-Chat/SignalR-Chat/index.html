@@ -13,22 +13,22 @@
 <body>
     <div class="container">
         <!-- Chat users list -->
-        <div class="col-md-2">
-            <table class="table">
-                <thead>
-                    <tr id="onlineUsersCount"></tr>
-                </thead>
-                <tbody id="userList">
-                    
-                </tbody>
-            </table>
-        </div>
+        <div class="row">
+            <div class="col-md-2">
+                <table class="table">
+                    <thead>
+                        <tr id="onlineUsersCount"></tr>
+                    </thead>
+                    <tbody id="userList"></tbody>
+                </table>
+            </div>
 
-        <!--Chat window-->
-        <div class="col-md-6">
-             
+            <!--Chat window-->
+            <div class="col-md-6" id="chatPanel">
+                <ul id="messagesArea"></ul>
+                <input type="text" id="userMessage" /><a id="btnSendMessage" class="btn btn-default">Send!</a>
+            </div>
         </div>
-
     </div>
 </body>
 </html>
